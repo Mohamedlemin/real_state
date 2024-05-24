@@ -10,9 +10,9 @@ function HomePage() {
     <div className='homePage'>
       <div className='textContainer'>
         <div className='wrapper'>
-          <h1 className='title'>test</h1>
+        <h1 className="title">Welcome to Our Real Estate Platform</h1>
           <p>
-         Hello {currentUser ? currentUser.username : "Guest"} Welcome to our website
+          Hello {currentUser ? currentUser.username : "Guest"}, welcome to our website. Find your dream home with us.
           </p>
           <SearchBar />
           <div className='boxes'>

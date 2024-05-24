@@ -3,7 +3,7 @@
   display: flex;
 
   .formContainer {
-    flex:3;
+    flex: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,7 +30,7 @@
         padding: 20px;
         border-radius: 5px;
         border: none;
-        background-color: teal;
+        background-color: #1abc9c;
         color: white;
         font-weight: bold;
         cursor: pointer;
@@ -40,14 +40,14 @@
 
   .sideContainer {
     flex: 2;
-    background-color: #fcf5f3;
+    background-color: #fafcff;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
     justify-content: center;
 
-    .avatar{
+    .avatar {
       width: 50%;
       object-fit: cover;
     }

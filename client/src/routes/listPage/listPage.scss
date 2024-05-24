@@ -8,7 +8,7 @@
     flex: 3;
     height: 100%;
 
-    .wrapper{
+    .wrapper {
       height: 100%;
       padding-right: 50px;
       display: flex;
@@ -21,9 +21,9 @@
   .mapContainer {
     flex: 2;
     height: 100%;
-    background-color: #fcf5f3;
+    background-color: #fafcff;
 
-    @include md{
+    @include md {
       display: none;
     }
   }
