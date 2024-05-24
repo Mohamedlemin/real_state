@@ -20,6 +20,7 @@ function SinglePage() {
   const handleSave = async () => {
     if (!currentUser) {
       navigate("/login");
+      return;
     }
     setSaved((prev) => !prev);
     try {
@@ -35,15 +36,34 @@ function SinglePage() {
     if (!message.trim()) return;
 
     try {
-      await apiRequest.post("/chats", { message: message, receiverId: post.userId });
-  console.log("Receiver ID:", post.userId);
-  console.log("message:", message);
+      await apiRequest.post("/chats", { message, receiverId: post.userId });
       setMessage("");
       setIsChatOpen(false);
       setSuccessMessage("Message sent successfully!");
       setTimeout(() => setSuccessMessage(""), 3000);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await apiRequest.delete(`/posts/${post.id}`, {
+        headers: {
+          Authorization: `Bearer ${currentUser.token}`
+        }
+      });
+
+      if (response.status === 200) {
+        navigate("/profile"); // Redirect to profile page after deletion
+      } else if (response.status === 403) {
+        alert("Not Authorized!");
+      } else {
+        alert("Failed to delete post");
+      }
+    } catch (err) {
+      console.error("Error deleting post:", err);
+      alert("Failed to delete post");
     }
   };
 
@@ -172,7 +192,12 @@ function SinglePage() {
               <img src="/save.png" alt="" />
               {saved ? "Place Saved" : "Save the Place"}
             </button>
-            
+            {currentUser && currentUser.id === post.userId && (
+              <button onClick={handleDelete} className="deleteButton">
+                <img src="/delete.png" alt="" />
+                Delete Post
+              </button>
+            )}
           </div>
           {isChatOpen && (
             <form onSubmit={handleMessageSend} className="chatForm">
@@ -184,7 +209,9 @@ function SinglePage() {
               <button type="submit">Send</button>
             </form>
           )}
-          {successMessage && <div className="successMessage">{successMessage}</div>}
+          {successMessage && (
+            <div className="successMessage">{successMessage}</div>
+          )}
         </div>
       </div>
     </div>

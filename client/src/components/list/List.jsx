@@ -1,16 +1,14 @@
+import './list.scss'
+import Card from"../card/Card"
 
-
-import Post from "../post/Post";
-import "./list.scss";
-
-function List({ posts, onDelete }) {
+function List({posts}){
   return (
-    <div className="list">
-      {posts.map((post) => (
-        <Post key={post.id} post={post} onDelete={onDelete} />
+    <div className='list'>
+      {posts.map(item=>(
+        <Card key={item.id} item={item}/>
       ))}
     </div>
-  );
+  )
 }
 
-export default List;
+export default List
